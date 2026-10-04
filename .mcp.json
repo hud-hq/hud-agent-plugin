@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "hud": {
+      "type": "http",
+      "url": "https://mcp.hud.io/mcp",
+      "oauth": {
+        "clientId": "XyvD6NaPGbrpOL9mxglq7KUYuPXbyNB4",
+        "callbackPort": 2425
+      }
+    }
+  }
+}

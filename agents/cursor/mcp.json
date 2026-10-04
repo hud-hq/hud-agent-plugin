@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "hud": {
+      "type": "http",
+      "url": "https://mcp.hud.io/mcp",
+      "auth": {
+        "CLIENT_ID": "XyvD6NaPGbrpOL9mxglq7KUYuPXbyNB4"
+      }
+    }
+  }
+}

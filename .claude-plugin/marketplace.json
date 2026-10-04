@@ -1,0 +1,13 @@
+{
+  "name": "hud",
+  "owner": { "name": "Hud", "email": "support@hud.io", "url": "https://hud.io" },
+  "description": "Official Hud plugins",
+  "plugins": [
+    {
+      "name": "hud",
+      "source": "./",
+      "description": "Hud Runtime Code Sensor: function-level production context for your coding agent.",
+      "category": "Developer Tools"
+    }
+  ]
+}
