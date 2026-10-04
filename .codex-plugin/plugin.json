@@ -33,7 +33,7 @@
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
       "Why is this endpoint failing in production?",
-      "What's the production blast radius of my current changes?",
+      "Which endpoints call the function I am about to change?",
       "Did the last deployment cause a regression?"
     ],
     "privacyPolicyURL": "https://www.hud.io/legal/privacy-policy/",

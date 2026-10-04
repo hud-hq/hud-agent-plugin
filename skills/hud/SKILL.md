@@ -13,6 +13,8 @@ Hud's Runtime Code Sensor records how every function behaves in production: invo
 2. **Call `hud-get-skill` before starting any investigation.** Its description lists the playbooks the server provides (endpoint errors, slow endpoints, deployment impact, forensics, Hud links, plus any custom skills for your account). If one matches, follow it rather than improvising.
 3. Then query with `hud-query` and drill into instances with `hud-get-forensics`, as the schema and playbooks describe.
 
+Before changing, refactoring or deleting code that runs in production, check how the affected functions behave there (traffic, latency, errors, which endpoints call them) and factor it into the change.
+
 ## How to use the data
 
 - Tie every production signal back to code: resolve the function, open the file, and explain the behavior in terms of the source.
