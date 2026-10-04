@@ -5,7 +5,7 @@ description: Find functions that never run in production and safely remove them.
 
 # Dead code from production data
 
-Requires the `hud` MCP server. Follow the `hud` skill's order (schema first).
+Requires the `hud` MCP server. Call `hud-get-schema` first, and check `hud-get-skill` for a matching playbook.
 
 ## Steps
 

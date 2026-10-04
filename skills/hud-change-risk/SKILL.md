@@ -5,7 +5,7 @@ description: Check the production impact of a code change before making or mergi
 
 # Production blast radius of a change
 
-Requires the `hud` MCP server. Follow the `hud` skill's order (schema first).
+Requires the `hud` MCP server. Call `hud-get-schema` first, and check `hud-get-skill` for a matching playbook.
 
 ## Steps
 
