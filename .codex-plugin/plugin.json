@@ -2,11 +2,23 @@
   "name": "hud",
   "version": "0.1.0",
   "description": "Hud Runtime Code Sensor: function-level production context (errors, latency, deployments, forensics) for your coding agent.",
-  "author": { "name": "Hud", "email": "support@hud.io", "url": "https://hud.io" },
+  "author": {
+    "name": "Hud",
+    "email": "support@hud.io",
+    "url": "https://hud.io"
+  },
   "homepage": "https://docs.hud.io",
   "repository": "https://github.com/hud-hq/hud-agent-plugin",
   "license": "MIT",
-  "keywords": ["hud", "observability", "runtime", "production", "debugging", "performance", "mcp"],
+  "keywords": [
+    "hud",
+    "observability",
+    "runtime",
+    "production",
+    "debugging",
+    "performance",
+    "mcp"
+  ],
   "skills": "./skills/",
   "mcpServers": "./agents/codex/mcp.json",
   "interface": {
@@ -14,13 +26,17 @@
     "shortDescription": "Production runtime context for every function you touch",
     "developerName": "Hud",
     "category": "Coding",
-    "capabilities": ["Read"],
+    "capabilities": [
+      "Read"
+    ],
     "websiteURL": "https://hud.io",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
       "Why is this endpoint failing in production?",
       "What's the production blast radius of my current changes?",
       "Did the last deployment cause a regression?"
-    ]
+    ],
+    "privacyPolicyURL": "https://www.hud.io/legal/privacy-policy/",
+    "termsOfServiceURL": "https://www.hud.io/legal/terms-of-service/"
   }
 }

@@ -3,9 +3,26 @@
   "displayName": "Hud",
   "version": "0.1.0",
   "description": "Hud Runtime Code Sensor: function-level production context (errors, latency, deployments, forensics) for your coding agent.",
-  "author": { "name": "Hud", "email": "support@hud.io", "url": "https://hud.io" },
+  "author": {
+    "name": "Hud",
+    "email": "support@hud.io",
+    "url": "https://hud.io"
+  },
   "homepage": "https://docs.hud.io",
   "repository": "https://github.com/hud-hq/hud-agent-plugin",
   "license": "MIT",
-  "keywords": ["hud", "observability", "runtime", "production", "debugging", "performance", "mcp"]
+  "keywords": [
+    "hud",
+    "observability",
+    "runtime",
+    "production",
+    "debugging",
+    "performance",
+    "mcp"
+  ],
+  "icon": "./assets/Hud_logo.png",
+  "documentationUrl": "https://docs.hud.io",
+  "supportUrl": "https://www.app.hud.io/?support_chat=true",
+  "privacyPolicyUrl": "https://www.hud.io/legal/privacy-policy/",
+  "termsOfServiceUrl": "https://www.hud.io/legal/terms-of-service/"
 }

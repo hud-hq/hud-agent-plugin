@@ -84,6 +84,13 @@ skills/                                        Skills shared by all three
 
 The MCP config is split per agent because each one spells static OAuth client settings differently.
 
+## Data and privacy
+
+- The plugin itself contains no code that runs on your machine. It configures your agent to talk to Hud's hosted MCP server (`https://mcp.hud.io/mcp`) and adds instruction skills.
+- When the agent calls a Hud tool, the tool arguments (for example SQL queries over your Hud runtime data, function or service names) are sent to Hud, and results from your Hud account are returned to the agent.
+- Access requires signing in with your Hud account (OAuth) or a Hud API key. You only see data your Hud account can already access.
+- Hud's [privacy policy](https://www.hud.io/legal/privacy-policy/) and [terms of service](https://www.hud.io/legal/terms-of-service/) apply.
+
 ## Support
 
 [docs.hud.io](https://docs.hud.io) · support@hud.io · [support chat](https://www.app.hud.io/?support_chat=true)
