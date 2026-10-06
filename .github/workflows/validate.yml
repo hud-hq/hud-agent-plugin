@@ -39,8 +39,10 @@ jobs:
         with:
           node-version: 20
 
+      # Not --strict: the directory listing fields (icon, privacyPolicyUrl, ...) are
+      # warnings to Claude Code but required by the Anthropic directory.
       - name: Claude Code plugin validation
         run: |
           npm install -g @anthropic-ai/claude-code
-          claude plugin validate --strict .
-          claude plugin validate --strict .claude-plugin/plugin.json
+          claude plugin validate .
+          claude plugin validate .claude-plugin/plugin.json
