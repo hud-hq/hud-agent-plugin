@@ -1,0 +1,48 @@
+name: Validate plugin
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JSON files parse
+        run: |
+          for f in .claude-plugin/*.json .codex-plugin/plugin.json .cursor-plugin/plugin.json .mcp.json agents/*/mcp.json; do
+            jq empty "$f" && echo "ok $f"
+          done
+
+      - name: Versions match across manifests
+        run: |
+          v1=$(jq -r .version .claude-plugin/plugin.json)
+          v2=$(jq -r .version .codex-plugin/plugin.json)
+          v3=$(jq -r .version .cursor-plugin/plugin.json)
+          echo "claude=$v1 codex=$v2 cursor=$v3"
+          [ "$v1" = "$v2" ] && [ "$v2" = "$v3" ]
+
+      - name: MCP endpoint and OAuth client match across agents
+        run: |
+          for f in .mcp.json agents/codex/mcp.json agents/cursor/mcp.json; do
+            jq -r '.mcpServers.hud.url' "$f"
+          done | sort -u | wc -l | grep -qx 1
+          c1=$(jq -r .mcpServers.hud.oauth.clientId .mcp.json)
+          c2=$(jq -r .mcpServers.hud.oauth.clientId agents/codex/mcp.json)
+          c3=$(jq -r .mcpServers.hud.auth.CLIENT_ID agents/cursor/mcp.json)
+          [ "$c1" = "$c2" ] && [ "$c2" = "$c3" ]
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Not --strict: the directory listing fields (icon, privacyPolicyUrl, ...) are
+      # warnings to Claude Code but required by the Anthropic directory.
+      - name: Claude Code plugin validation
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate .
+          claude plugin validate .claude-plugin/plugin.json
