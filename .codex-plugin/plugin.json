@@ -30,7 +30,7 @@
       "Read"
     ],
     "websiteURL": "https://hud.io",
-    "logo": "./assets/logo.svg",
+    "logo": "./assets/icon.svg",
     "defaultPrompt": [
       "Why is this endpoint failing in production?",
       "Which endpoints call the function I am about to change?",

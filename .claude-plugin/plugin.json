@@ -20,7 +20,7 @@
     "performance",
     "mcp"
   ],
-  "icon": "./assets/Hud_logo.png",
+  "icon": "./assets/icon.png",
   "documentationUrl": "https://docs.hud.io",
   "supportUrl": "https://www.app.hud.io/?support_chat=true",
   "privacyPolicyUrl": "https://www.hud.io/legal/privacy-policy/",
