@@ -39,9 +39,11 @@ MCP only (no skills), one click:
 
 ```bash
 codex plugin marketplace add hud-hq/hud-agent-plugin
+codex plugin add hud@hud
+codex mcp login hud
 ```
 
-Open `/plugins` in Codex, install **Hud**, then run `codex mcp login hud` to sign in.
+Or open `/plugins` in Codex and install **Hud**, then run `codex mcp login hud` to sign in.
 
 ## Try it
 
@@ -68,7 +70,7 @@ One repo, three manifests, one shared `skills/` directory:
 .codex-plugin/plugin.json                      Codex
 .cursor-plugin/plugin.json                     Cursor
 .mcp.json                                      MCP config for Claude Code
-agents/codex/mcp.json                          MCP config for Codex (fixed OAuth callback URL)
+agents/codex/mcp.json                          MCP config for Codex (URL only, Codex brings its own OAuth client)
 agents/cursor/mcp.json                         MCP config for Cursor (Cursor's OAuth field format)
 skills/                                        Skills shared by all three
 ```
