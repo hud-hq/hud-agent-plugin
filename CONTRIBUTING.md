@@ -7,7 +7,7 @@
 
 ## Releasing
 
-1. Bump `version` in `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json` and `.cursor-plugin/plugin.json` (CI fails if they differ).
+1. Bump `version` (required: Claude Code caches installed plugins by version, so without a bump users never get the change; CI enforces it) in `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json` and `.cursor-plugin/plugin.json` (CI fails if they differ).
 2. Merge to `main` through a PR.
 3. Tag the merge commit `vX.Y.Z` and create a GitHub release.
 

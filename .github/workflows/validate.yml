@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: JSON files parse
         run: |
@@ -24,6 +26,19 @@ jobs:
           v3=$(jq -r .version .cursor-plugin/plugin.json)
           echo "claude=$v1 codex=$v2 cursor=$v3"
           [ "$v1" = "$v2" ] && [ "$v2" = "$v3" ]
+
+      - name: Version bumped when plugin content changes
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch -q origin "${{ github.base_ref }}"
+          changed=$(git diff --name-only "origin/${{ github.base_ref }}"...HEAD -- skills agents .mcp.json .claude-plugin .codex-plugin .cursor-plugin assets)
+          if [ -n "$changed" ]; then
+            base=$(git show "origin/${{ github.base_ref }}":.claude-plugin/plugin.json | jq -r .version)
+            head=$(jq -r .version .claude-plugin/plugin.json)
+            echo "plugin content changed; version $base -> $head"
+            # Claude Code caches installed plugins by version: without a bump, users never get the change
+            [ "$base" != "$head" ]
+          fi
 
       - name: MCP endpoint and OAuth client match across agents
         run: |
