@@ -11,7 +11,7 @@
 2. Merge to `main` through a PR.
 3. Tag the merge commit `vX.Y.Z` and create a GitHub release.
 
-The Anthropic directory picks up new commits on `main` automatically (with a re-scan). Cursor re-reviews updates.
+The Anthropic directory picks up new commits on `main` automatically (with a re-scan). Cursor re-reviews updates. The OpenAI directory needs a new ZIP for metadata or skill changes: run `scripts/build-openai-zip.sh` and upload it at platform.openai.com/plugins (MCP server changes are picked up by OpenAI's daily scan, no upload needed).
 
 ## OAuth callbacks
 

@@ -2,7 +2,17 @@
   "mcpServers": {
     "hud": {
       "type": "http",
-      "url": "https://mcp.hud.io/mcp"
+      "url": "https://mcp.hud.io/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": {
+              "mode": "cimd"
+            }
+          }
+        }
+      }
     }
   }
 }
