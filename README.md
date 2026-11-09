@@ -7,9 +7,9 @@ The official [Hud](https://hud.io) plugin for Claude Code, Cursor and Codex. It 
 One install gives you:
 
 - **Hud MCP server** (hosted at `https://mcp.hud.io/mcp`, OAuth sign-in with your Hud account, nothing to install locally)
-- **A `hud` skill** that tells the agent when to reach for Hud, how to start (schema first, then the server's playbooks via `hud-get-skill`), and how to sign in. The investigation playbooks themselves (endpoint errors, slow endpoints, deployment impact, forensics) are served by the Hud MCP, so they stay current without updating the plugin.
+- **A `hud-install` skill** that installs the Hud SDK in your repo. It fetches the current install steps from [skills.hud.io](https://skills.hud.io/install) instead of bundling a copy, so it never goes stale. Investigation playbooks (endpoint errors, slow endpoints, deployment impact, forensics) are served by the Hud MCP itself.
 
-**Prerequisites:** a [Hud account](https://app.hud.io) and the Hud SDK installed in your services ([docs](https://docs.hud.io)).
+**Prerequisites:** a [Hud account](https://app.hud.io) and the Hud SDK in your services (the `hud-install` skill can add it, or see the [docs](https://docs.hud.io)).
 
 ## Install
 

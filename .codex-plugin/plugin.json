@@ -1,6 +1,6 @@
 {
   "name": "hud",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Hud Runtime Code Sensor: function-level production context (errors, latency, deployments, forensics) for your coding agent.",
   "author": {
     "name": "Hud",
@@ -100,8 +100,9 @@
         "commerce_description": "Hud does not sell products or process payments in this plugin."
       },
       "publication": {
-        "release_notes": "Initial release: connects Codex and ChatGPT to the Hud MCP server (OAuth sign-in) with a skill that guides production investigations: errors, latency, deployment impact and forensic traces."
-      }
+        "release_notes": "Initial release: connects Codex and ChatGPT to the Hud MCP server (OAuth sign-in) and adds a hud-install skill that installs the Hud SDK in your repo using the current instructions from skills.hud.io."
+      },
+      "onboardingSkill": "./skills/hud-install/SKILL.md"
     }
   }
 }

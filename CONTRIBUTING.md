@@ -2,7 +2,7 @@
 
 ## Layout
 
-- `skills/` is shared by Claude Code, Cursor and Codex. Keep skills thin: investigation playbooks belong on the Hud MCP server (`hud-get-skill`), so every MCP client gets them without a plugin release.
+- `skills/` is shared by Claude Code, Cursor and Codex. Keep skills thin pointers: investigation playbooks belong on the Hud MCP server (`hud-get-skill`) and install steps on skills.hud.io, so they update without a plugin release.
 - MCP config is split per agent (`.mcp.json`, `agents/codex/mcp.json`, `agents/cursor/mcp.json`) because each agent spells static OAuth settings differently. Change all three together.
 
 ## Releasing
