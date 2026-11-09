@@ -15,6 +15,8 @@ One install gives you:
 
 ### Claude Code
 
+Install **Hud** from the [Claude plugin directory](TODO-anthropic-listing-url), or run:
+
 ```
 /plugin install hud --marketplace hud-hq/hud-agent-plugin
 ```
@@ -29,7 +31,7 @@ Then run `/mcp`, select **hud** and sign in.
 
 ### Cursor
 
-Install **Hud** from the [Cursor Marketplace](https://cursor.com/marketplace), then toggle **hud** on in **Settings → Tools & MCP** and sign in.
+Install **Hud** from the [Cursor Marketplace](TODO-cursor-listing-url), then toggle **hud** on in **Settings → Tools & MCP** and sign in.
 
 MCP only (no skills), one click:
 
