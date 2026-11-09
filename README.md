@@ -61,6 +61,13 @@ claude mcp add --scope user -t http hud https://mcp.hud.io/mcp -H "X-Hud-Mcp-Key
 
 See [Hud Remote MCP](https://docs.hud.io/docs/remote-mcp) for Cursor and other clients.
 
+Codex asks before each MCP tool call, which `codex exec` can't answer. To run Hud tools unattended, allow them in `~/.codex/config.toml` (Hud tools are read-only):
+
+```toml
+[plugins."hud@hud".mcp_servers.hud]
+default_tools_approval_mode = "approve"
+```
+
 ## Repo layout
 
 One repo, three manifests, one shared `skills/` directory:
@@ -73,6 +80,7 @@ One repo, three manifests, one shared `skills/` directory:
 agents/codex/mcp.json                          MCP config for Codex (URL only, Codex brings its own OAuth client)
 agents/cursor/mcp.json                         MCP config for Cursor (Cursor's OAuth field format)
 skills/                                        Skills shared by all three
+scripts/build-openai-zip.sh                    Builds the ZIP for the OpenAI plugin directory
 ```
 
 The MCP config is split per agent because each one spells static OAuth client settings differently.
