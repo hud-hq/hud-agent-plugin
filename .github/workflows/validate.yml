@@ -46,9 +46,10 @@ jobs:
             jq -r '.mcpServers.hud.url' "$f"
           done | sort -u | wc -l | grep -qx 1
           c1=$(jq -r .mcpServers.hud.oauth.clientId .mcp.json)
-          c2=$(jq -r .mcpServers.hud.oauth.clientId agents/codex/mcp.json)
           c3=$(jq -r .mcpServers.hud.auth.CLIENT_ID agents/cursor/mcp.json)
-          [ "$c1" = "$c2" ] && [ "$c2" = "$c3" ]
+          [ "$c1" = "$c3" ]
+          # Codex must not pin a client ID: it signs in with its own Client ID Metadata Document.
+          [ "$(jq -r '.mcpServers.hud.oauth // empty' agents/codex/mcp.json)" = "" ]
 
       - uses: actions/setup-node@v4
         with:

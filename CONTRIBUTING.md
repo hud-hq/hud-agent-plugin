@@ -15,12 +15,10 @@ The Anthropic directory picks up new commits on `main` automatically (with a re-
 
 ## OAuth callbacks
 
-The plugin uses Hud's public OAuth client `XyvD6NaPGbrpOL9mxglq7KUYuPXbyNB4` (PKCE, no secret). Each agent signs in through its own fixed callback, and each must be allowed on that client:
+Claude Code and Cursor use Hud's public OAuth client `XyvD6NaPGbrpOL9mxglq7KUYuPXbyNB4` (PKCE, no secret), and their callbacks must be allowed on that client. Codex pins no client ID: login.hud.io supports Client ID Metadata Documents, so Codex signs in as `https://chatgpt.com/oauth/codex/client.json` with whatever local port it picks.
 
 | Agent | Callback |
 |-------|----------|
 | Claude Code | `http://localhost:2425/callback` |
 | Cursor (desktop) | `http://localhost:8787/callback`, `cursor://anysphere.cursor-mcp/oauth/callback` |
-| Codex | `http://127.0.0.1:2425/callback/KCvWksKb-TdJ` (suffix derived from the MCP URL) |
-
-If the MCP URL changes, the Codex suffix changes too: it is the first 9 bytes of `sha256(<mcp url>)`, base64url without padding.
+| Codex | none needed (client ID metadata document) |
