@@ -1,6 +1,6 @@
 {
   "name": "hud",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Hud Runtime Code Sensor: function-level production context (errors, latency, deployments, forensics) for your coding agent.",
   "author": {
     "name": "Hud",
