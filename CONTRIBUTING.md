@@ -2,7 +2,7 @@
 
 ## Layout
 
-- `skills/` is shared by Claude Code, Cursor and Codex. Keep skills thin: investigation playbooks belong on the Hud MCP server (`hud-get-skill`), so every MCP client gets them without a plugin release.
+- `skills/` is shared by Claude Code, Cursor and Codex. Keep skills thin pointers: investigation playbooks belong on the Hud MCP server (`hud-get-skill`) and install steps on skills.hud.io, so they update without a plugin release.
 - MCP config is split per agent (`.mcp.json`, `agents/codex/mcp.json`, `agents/cursor/mcp.json`) because each agent spells static OAuth settings differently. Change all three together.
 
 ## Releasing
@@ -11,7 +11,7 @@
 2. Merge to `main` through a PR.
 3. Tag the merge commit `vX.Y.Z` and create a GitHub release.
 
-The Anthropic directory picks up new commits on `main` automatically (with a re-scan). Cursor re-reviews updates.
+The Anthropic directory picks up new commits on `main` automatically (with a re-scan). Cursor re-reviews updates. The OpenAI directory needs a new ZIP for metadata or skill changes: run `scripts/build-openai-zip.sh` and upload it at platform.openai.com/plugins (MCP server changes are picked up by OpenAI's daily scan, no upload needed).
 
 ## OAuth callbacks
 

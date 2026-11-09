@@ -1,6 +1,6 @@
 {
   "name": "hud",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Hud Runtime Code Sensor: function-level production context (errors, latency, deployments, forensics) for your coding agent.",
   "author": {
     "name": "Hud",
@@ -23,20 +23,86 @@
   "mcpServers": "./agents/codex/mcp.json",
   "interface": {
     "displayName": "Hud",
-    "shortDescription": "Production runtime context for every function you touch",
+    "shortDescription": "Production context for code",
+    "longDescription": "Hud gives your coding agent read-only access to how your code behaves in production, recorded by Hud's Runtime Code Sensor at the function level: invocations, latency percentiles, error rates, exceptions, the endpoints and queues each function serves, deployments, and sampled forensic traces of failing requests.\n\nUse it to debug production errors and slow endpoints, check whether a deployment caused a regression, find which endpoints call a function before you change it, or confirm whether code is used at all.\n\nIntended for engineering teams whose services run the Hud SDK (Node.js, Python, Java, Kotlin). You sign in with your Hud account and only see data from services in that account.\n\nLimitations: Hud is read-only and cannot change code, data or deployments. Services without the Hud SDK return no data. Forensic traces are sampled, so not every request is available.",
     "developerName": "Hud",
-    "category": "Coding",
+    "category": "Developer Tools",
     "capabilities": [
-      "Read"
+      "Query production errors and latency",
+      "Check deployment impact",
+      "Read forensic traces of failures",
+      "Find callers of a function"
     ],
-    "websiteURL": "https://hud.io",
-    "logo": "./assets/icon.svg",
+    "websiteURL": "https://www.hud.io",
+    "supportURL": "https://www.hud.io/contact-us/",
+    "privacyPolicyURL": "https://www.hud.io/legal/privacy-policy/",
+    "termsOfServiceURL": "https://www.hud.io/legal/terms-of-service/",
     "defaultPrompt": [
       "Why is this endpoint failing in production?",
       "Which endpoints call the function I am about to change?",
       "Did the last deployment cause a regression?"
     ],
-    "privacyPolicyURL": "https://www.hud.io/legal/privacy-policy/",
-    "termsOfServiceURL": "https://www.hud.io/legal/terms-of-service/"
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Rank endpoints by production errors",
+              "prompt": "Which endpoints in magician-props-api had the most 500 errors in production in the last 24 hours?",
+              "tools_triggered": "hud-get-schema, hud-query",
+              "expected_behavior": "Returns a ranked list of endpoints with invocation counts, 500 counts and error rates for the last 24 hours, labeled with service and environment."
+            },
+            {
+              "description": "Investigate the root cause of an endpoint error",
+              "prompt": "Why is POST /orders in magician-props-api failing in production?",
+              "tools_triggered": "hud-get-schema, hud-get-skill, hud-query, hud-get-forensics",
+              "expected_behavior": "Follows Hud's endpoint-error playbook, reports the error rate and the exception behind the failures (type, message, throwing function), and separates what Hud shows from inference."
+            },
+            {
+              "description": "Find slow endpoints",
+              "prompt": "Which endpoints in magician-props-api are slowest in production right now?",
+              "tools_triggered": "hud-get-schema, hud-query",
+              "expected_behavior": "Lists endpoints ordered by p95 or p99 latency with invocation counts and the time window used."
+            },
+            {
+              "description": "Check deployment impact",
+              "prompt": "Did the most recent deployment of magician-props-api change error rates or latency?",
+              "tools_triggered": "hud-get-schema, hud-get-skill, hud-query",
+              "expected_behavior": "Identifies the latest deployment and compares error rates and latency before and after it, or says no deployment was found in the window."
+            },
+            {
+              "description": "Search failure traces for a pattern",
+              "prompt": "Find failing requests in magician-props-api from the last week that mention total_amount and group them by cause.",
+              "tools_triggered": "hud-get-schema, hud-get-skill, hud-forensics-search",
+              "expected_behavior": "Searches sampled forensic traces, groups matching failures by cause and reports counts, or states that no matching traces were sampled."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Write actions are out of scope: Hud is read-only",
+              "prompt": "Delete the failed orders from the magician-props-api production database."
+            },
+            {
+              "description": "Operational actions are out of scope: Hud cannot change deployments",
+              "prompt": "Roll back the last deployment of magician-props-api."
+            },
+            {
+              "description": "Access is limited to the connected Hud account",
+              "prompt": "Show me production errors for another company's services in Hud."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "Hud does not sell products or process payments in this plugin."
+      },
+      "publication": {
+        "release_notes": "Initial release: connects Codex and ChatGPT to the Hud MCP server (OAuth sign-in) and adds a hud-install skill that installs the Hud SDK in your repo using the current instructions from skills.hud.io."
+      },
+      "onboardingSkill": "./skills/hud-install/SKILL.md"
+    }
   }
 }
